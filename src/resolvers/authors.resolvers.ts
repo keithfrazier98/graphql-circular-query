@@ -1,7 +1,9 @@
 // Resolvers define how to fetch the types defined in your schema.
-// This resolver retrieves books from the "books" array above.
+import { authors } from "../data/authors.data";
+
+// This resolver retrieves authors from the "authors" array above.
 export const resolvers = {
     Query: {
-      books: () => books,
+      authors: () => authors,
     },
   };
