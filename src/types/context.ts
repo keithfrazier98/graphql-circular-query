@@ -1,3 +1,8 @@
+import { Author, Book } from "generated/graphql";
+
 export interface Context {
-  dataSources: any;
+  dataSources: {
+    books: Book[];
+    authors: Author[];
+  };
 }

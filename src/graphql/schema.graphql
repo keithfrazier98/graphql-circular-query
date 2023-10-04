@@ -6,14 +6,14 @@
   # This "Book" type defines the queryable fields for every book in our data source.
   type Book {
     title: String!
-    author: String!
+    author: Author
     id: Int!
   }
 
   type Author {
     name: String!
     id: Int!
-    books: [Int]!
+    books: [Book]
   }
 
   # The "Query" type is special: it lists all of the available queries that

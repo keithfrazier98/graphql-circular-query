@@ -20,6 +20,7 @@ const server = new ApolloServer<Context>({
 //  2. installs your ApolloServer instance as middleware
 //  3. prepares your app to handle incoming requests
 
+// @ts-ignore
 const { url } = await startStandaloneServer(server, {
   listen: { port: 4000 },
   context: async () => ({ dataSources }),

@@ -17,14 +17,14 @@ export type Scalars = {
 
 export type Author = {
   __typename?: 'Author';
-  books: Array<Maybe<Scalars['Int']['output']>>;
+  books?: Maybe<Array<Maybe<Book>>>;
   id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
 };
 
 export type Book = {
   __typename?: 'Book';
-  author: Scalars['String']['output'];
+  author?: Maybe<Author>;
   id: Scalars['Int']['output'];
   title: Scalars['String']['output'];
 };
@@ -125,14 +125,14 @@ export type ResolversParentTypes = {
 };
 
 export type AuthorResolvers<ContextType = any, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = {
-  books?: Resolver<Array<Maybe<ResolversTypes['Int']>>, ParentType, ContextType>;
+  books?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type BookResolvers<ContextType = any, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = {
-  author?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  author?: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
