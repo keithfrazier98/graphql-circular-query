@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "rm -rf dist && yarn run codegen && tsc && tsc-alias",
+    "compile": "rm -rf dist && yarn run codegen && tsc && tsc-alias && cp src/graphql/schema.graphql dist",
     "start": "npm run compile && node ./dist/index.js",
     "codegen": "graphql-codegen --config codegen.ts"
   },

@@ -5,14 +5,14 @@ import { readFileSync } from "fs";
 import { dataSources } from "./data";
 import type { Context } from "./types";
 
-const typeDefs = readFileSync("schema.graphql", { encoding: "utf-8" });
+const typeDefs = readFileSync("dist/schema.graphql", { encoding: "utf-8" });
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
 
 const server = new ApolloServer<Context>({
   typeDefs,
-  resolvers: { authorsResolvers, booksResolvers },
+  resolvers: [ authorsResolvers, booksResolvers ],
 });
 
 // Passing an ApolloServer instance to the `startStandaloneServer` function:

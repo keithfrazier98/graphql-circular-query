@@ -8,9 +8,10 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "types": ["node"],
-    "baseUrl": "."
+    "baseUrl": "./src"
   },
-  "include": ["**/*.ts"],
+  "include": ["src/*.ts"],
+  "exclude": ["generated"],
   "tsc-alias": {
     "resolveFullPaths": true,
     "verbose": false
