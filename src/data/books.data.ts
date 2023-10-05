@@ -6,7 +6,7 @@ export const books = [
   },
   {
     title: "City of Glass",
-    author: 1,
+    author: 2,
     id: 2,
   },
   {
@@ -16,7 +16,7 @@ export const books = [
   },
   {
     title: "City of Glass 2",
-    author: 1,
+    author: 2,
     id: 4,
   },
 ];

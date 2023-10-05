@@ -1,14 +1,22 @@
 // Resolvers define how to fetch the types defined in your schema.
 
-import { Context } from "vm";
-import { Resolvers } from "../generated/graphql";
-// This resolver retrieves books from the "books" array above.
+import { Book, Context, DataSourceBook } from "types";
+import { Resolvers } from "../types";
+
+const mapBooksToResolverType = (book: DataSourceBook): Book => ({
+  ...book,
+  author: { id: book.authorId },
+});
+
 export const resolvers: Resolvers = {
   Query: {
-    books: (_, __, { dataSources }: Context) => dataSources.books,
+    books: (_, __, { dataSources }: Context) =>
+      dataSources.books.map(mapBooksToResolverType),
   },
-  Book: {
-    author: (parent, __, { dataSources }: Context) =>
-      dataSources.authors.find((author) => author.id === parent.author),
+  Author: {
+    books: (parent, _, { dataSources }: Context) =>
+      dataSources.books.filter((book) =>
+        parent.books.find(({ id }) => id === book.id)
+      ),
   },
 };
