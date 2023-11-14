@@ -6,6 +6,7 @@ const mapAuthorToResolverType = (author: DataSourceAuthor): Author => {
   return {
     ...author,
     books: author.books.map((id) => ({ id })),
+    bestSellers: author.bestSellers.map((id) => ({ id })),
   };
 };
 

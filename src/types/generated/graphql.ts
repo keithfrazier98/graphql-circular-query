@@ -17,15 +17,21 @@ export type Scalars = {
 
 export type Author = {
   __typename?: 'Author';
+  bestSellers?: Maybe<Array<Maybe<Book>>>;
   books?: Maybe<Array<Maybe<Book>>>;
   id: Scalars['Int']['output'];
   name?: Maybe<Scalars['String']['output']>;
+  publishers?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  rating?: Maybe<Scalars['Float']['output']>;
 };
 
 export type Book = {
   __typename?: 'Book';
   author?: Maybe<Author>;
+  genre?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
+  pages?: Maybe<Scalars['Int']['output']>;
+  rating?: Maybe<Scalars['Float']['output']>;
   title?: Maybe<Scalars['String']['output']>;
 };
 
@@ -121,6 +127,7 @@ export type ResolversTypes = {
   Author: ResolverTypeWrapper<Author>;
   Book: ResolverTypeWrapper<Book>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
@@ -131,21 +138,28 @@ export type ResolversParentTypes = {
   Author: Author;
   Book: Book;
   Boolean: Scalars['Boolean']['output'];
+  Float: Scalars['Float']['output'];
   Int: Scalars['Int']['output'];
   Query: {};
   String: Scalars['String']['output'];
 };
 
 export type AuthorResolvers<ContextType = any, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = {
+  bestSellers?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
   books?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  publishers?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
+  rating?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type BookResolvers<ContextType = any, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = {
   author?: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType>;
+  genre?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  pages?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  rating?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

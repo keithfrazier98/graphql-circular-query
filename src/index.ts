@@ -4,6 +4,10 @@ import { authorsResolvers, booksResolvers } from "./resolvers";
 import { readFileSync } from "fs";
 import { dataSources } from "./data";
 import type { Context } from "./types";
+import {
+  simpleEstimator,
+  createComplexityRule,
+} from "graphql-query-complexity";
 
 const typeDefs = readFileSync("dist/schema.graphql", { encoding: "utf-8" });
 
@@ -12,7 +16,18 @@ const typeDefs = readFileSync("dist/schema.graphql", { encoding: "utf-8" });
 
 const server = new ApolloServer<Context>({
   typeDefs,
-  resolvers: [ authorsResolvers, booksResolvers ],
+  resolvers: [authorsResolvers, booksResolvers],
+  validationRules: [
+    createComplexityRule({
+      estimators: [
+        simpleEstimator({ defaultComplexity: 1 }),
+      ],
+      maximumComplexity: 1000,
+      onComplete: (complexity: number) => {
+        console.log("Query Complexity:", complexity);
+      },
+    }),
+  ],
 });
 
 // Passing an ApolloServer instance to the `startStandaloneServer` function:

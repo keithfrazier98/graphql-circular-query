@@ -25,5 +25,11 @@ export const resolvers: Resolvers = {
       );
       return books.map(mapBooksToResolverType);
     },
+    bestSellers(parent, _, { dataSources }: Context) {
+      const books = dataSources.books.filter((book) =>
+        parent.bestSellers.find(({ id }) => id === book.id)
+      );
+      return books.map(mapBooksToResolverType);
+    }
   },
 };
