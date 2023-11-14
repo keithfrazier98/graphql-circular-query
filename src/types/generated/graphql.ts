@@ -31,8 +31,20 @@ export type Book = {
 
 export type Query = {
   __typename?: 'Query';
+  author?: Maybe<Author>;
   authors?: Maybe<Array<Maybe<Author>>>;
+  book?: Maybe<Book>;
   books?: Maybe<Array<Maybe<Book>>>;
+};
+
+
+export type QueryAuthorArgs = {
+  id?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type QueryBookArgs = {
+  id?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -139,7 +151,9 @@ export type BookResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  author?: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType, Partial<QueryAuthorArgs>>;
   authors?: Resolver<Maybe<Array<Maybe<ResolversTypes['Author']>>>, ParentType, ContextType>;
+  book?: Resolver<Maybe<ResolversTypes['Book']>, ParentType, ContextType, Partial<QueryBookArgs>>;
   books?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
 };
 

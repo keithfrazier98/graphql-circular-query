@@ -10,17 +10,20 @@ const mapBooksToResolverType = (book: DataSourceBook): Book => ({
 
 export const resolvers: Resolvers = {
   Query: {
-    books: (_, __, { dataSources }: Context) =>
-      dataSources.books.map(mapBooksToResolverType),
+    books(_, __, { dataSources }: Context) {
+      return dataSources.books.map(mapBooksToResolverType);
+    },
+    book(_, args, { dataSources }: Context) {
+      const book = dataSources.books.find((record) => record.id === args.id);
+      return mapBooksToResolverType(book);
+    },
   },
   Author: {
-    books: (parent, _, { dataSources }: Context) =>{
-     const books = dataSources.books.filter((book) =>
+    books(parent, _, { dataSources }: Context) {
+      const books = dataSources.books.filter((book) =>
         parent.books.find(({ id }) => id === book.id)
-      )
-    
-      return books.map(mapBooksToResolverType)
-    }
-
+      );
+      return books.map(mapBooksToResolverType);
+    },
   },
 };

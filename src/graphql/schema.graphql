@@ -21,5 +21,7 @@
   # case, the "books" query returns an array of zero or more Books (defined above).
   type Query {
     books: [Book]
+    book(id: Int): Book
     authors: [Author]
+    author(id: Int): Author
   }
