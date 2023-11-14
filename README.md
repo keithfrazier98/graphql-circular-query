@@ -4,7 +4,7 @@ This project is just an example of how to implement simple query complexity limi
 
 Some overview bullets on the PoC
 
-- Datasources are static JSON files (as they are not the main piece of the project)
+- Datasources are static JSON files
 - Types are generated using [GraphQL Codegen](https://the-guild.dev/graphql/codegen)
 
 The schema includes a circular reference between the Book and Author types (in the GQL Schema). Query complexity is calculated by the amount of fields that a client queries, regardless of the depth. Each field has the value of 1 and the max complexity is capped at 1000.
