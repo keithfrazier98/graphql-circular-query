@@ -1,7 +1,7 @@
 export interface DataSourceBook {
   id: number;
   title: string;
-  authorId: number;
+  author: number;
 }
 
 export interface DataSourceAuthor {

@@ -3,8 +3,6 @@ import { Author, Resolvers } from "types/generated/graphql";
 import { Context, DataSourceAuthor } from "types";
 
 const mapAuthorToResolverType = (author: DataSourceAuthor): Author => {
- console.log(author);
- 
   return {
   ...author,
   books: author.books.map((id) => ({ id })),}
@@ -17,10 +15,9 @@ export const resolvers: Resolvers = {
       dataSources.authors.map(mapAuthorToResolverType),
   },
   Book: {
-    //@ts-ignore
-    author: (parent, __, { dataSources }: Context) => {
-      console.log(parent);
-      return dataSources.authors.find((author) => author.id === parent.id);
+    author: (parent, __, { dataSources }: Context) => {      
+      const author =  dataSources.authors.find((author) => author.id === parent.author.id);
+      return mapAuthorToResolverType(author)
     },
   },
 };

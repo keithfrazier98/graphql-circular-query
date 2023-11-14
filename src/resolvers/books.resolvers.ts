@@ -5,7 +5,7 @@ import { Resolvers } from "../types";
 
 const mapBooksToResolverType = (book: DataSourceBook): Book => ({
   ...book,
-  author: { id: book.authorId },
+  author: { id: book.author },
 });
 
 export const resolvers: Resolvers = {
@@ -14,9 +14,13 @@ export const resolvers: Resolvers = {
       dataSources.books.map(mapBooksToResolverType),
   },
   Author: {
-    books: (parent, _, { dataSources }: Context) =>
-      dataSources.books.filter((book) =>
+    books: (parent, _, { dataSources }: Context) =>{
+     const books = dataSources.books.filter((book) =>
         parent.books.find(({ id }) => id === book.id)
-      ),
+      )
+    
+      return books.map(mapBooksToResolverType)
+    }
+
   },
 };
