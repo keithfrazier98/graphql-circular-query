@@ -1,3 +1,4 @@
-# graphql-server-example
+# GraphQL Query Limit Example
 
-This project is just an example of an idea to throw an error when a circular query is recognized. Still a WIP!
+This project is just an example of how to implement simple query depth limitation in Apollo Server with the graphql-query-complexity package. 
+
